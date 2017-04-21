@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/background_color</item>
+        <item name="colorPrimaryDark">#00BFFF</item>
+        <item name="colorAccent">@color/indicatorColor_color</item>
+    </style>
+
+    <!--无ActionBar的主题-->
+    <style name="AppTheme.Base.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!--登陆注册输入框的样式-->
+    <style name="editTextStyle">
+        <item name="android:background">@null</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>

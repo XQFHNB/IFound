@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_color"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="150dp"
+        android:orientation="vertical">
+
+
+        <EditText
+            android:id="@+id/editText_phone_frag_edit_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:drawableLeft="@drawable/login_icon_account"
+            android:hint="手机"
+            android:inputType="phone"
+            android:textColorHint="@color/hint_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bottom_line"/>
+
+        <EditText
+            android:id="@+id/editText_name_frag_edit_register"
+
+            style="@style/editTextStyle"
+            android:drawableLeft="@drawable/login_icon_account"
+            android:hint="昵称"
+            android:textColorHint="@color/hint_color"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bottom_line"/>
+
+        <EditText
+            android:id="@+id/editText_pwd_frag_edit_register"
+            style="@style/editTextStyle"
+            android:drawableLeft="@drawable/login_icon_password"
+            android:hint="密码"
+            android:inputType="textPassword"
+            android:textColorHint="@color/hint_color"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bottom_line"/>
+
+        <EditText
+            android:id="@+id/editText_again_pwd_frag_edit_register"
+            style="@style/editTextStyle"
+            android:drawableLeft="@drawable/login_icon_password"
+            android:hint="确认密码"
+
+            android:inputType="textPassword"
+
+            android:textColorHint="@color/hint_color"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bottom_line"/>
+
+        <Button
+            android:id="@+id/btn_register_frag_edit_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_login_bg"
+            android:text="注册"
+            android:textColor="@color/background_color"
+            android:textSize="16dp"/>
+    </LinearLayout>
+</LinearLayout>

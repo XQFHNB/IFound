@@ -1,8 +1,10 @@
 package com.example.anif.base;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 /**
  * @author XQF
@@ -27,5 +29,9 @@ public class FragBase extends Fragment {
             dialog.show();
         }
         return dialog;
+    }
+
+    public void toast(String str, Context context) {
+        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
     }
 }

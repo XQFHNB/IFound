@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_color"
+        >
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/hint_color"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/text_color"
+            android:orientation="vertical">
+
+            <TextView
+                style="?android:attr/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:background="@null"
+                android:text="标题"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:textColorHint="@color/colorPrimary"/>
+
+            <EditText
+                android:id="@+id/edt_title_frag_publish_secondhand"
+                style="?android:attr/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@null"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_bottom_line"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="20dp"
+                android:text="物品价格描述"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/edt_description_frag_publish_secondhand"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_bg"
+                android:gravity="top"
+                android:textColor="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text_bottom_line"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="联系方式"
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_addContact_frag_publish_secondhand"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/add"/>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/edt_contact_frag_publish_secondhand"
+                style="?android:attr/textViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@null"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/bottomline_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_bottom_line"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                >
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="标签"
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_addLabel_frag_publish_secondhand"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/add"/>
+
+
+            </RelativeLayout>
+
+            <TableLayout
+                android:id="@+id/tablelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:visibility="gone">
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/cb11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="生活家电"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb12"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="护肤美颜"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb13"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="配件外设"
+                        />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/cb21"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="书籍资料"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="衣物箱包"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="优惠卡券"
+                        />
+                </TableRow>
+
+                <TableRow>
+
+                    <CheckBox
+                        android:id="@+id/cb32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="运动器材"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="电子设备"
+
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cb31"
+                        android:layout_width="wrap_content"
+
+                        android:layout_height="wrap_content"
+                        android:text="其他"
+                        />
+                </TableRow>
+            </TableLayout>
+
+
+            <TextView
+                android:id="@+id/bottomline_tablelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/edit_text_bottom_line"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:text="图片"
+                    />
+
+
+                <Button
+                    android:id="@+id/btn_add_image_frag_publish_secondhand"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/add"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayout_addImage_frag_publish_secondhand"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/btn_selectFromimages_frag_publish_secondhand"
+                    style="?android:textAppearanceSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:text="从相册中选择一张图片"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:id="@+id/imageV_frag_publish_secondhand"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="1"
+                    android:scaleType="centerCrop"
+                    android:src="@android:drawable/screen_background_light_transparent"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="1dp"
+                android:background="@drawable/edit_text_bottom_line"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

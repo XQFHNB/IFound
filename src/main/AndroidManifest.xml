@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".main.AtyMain" android:theme="@style/AppTheme.Base.NoActionBar"
+            android:name=".atys.AtyEntry"
+            android:theme="@style/AppTheme.Base.NoActionBar"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -25,9 +26,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".start.AtyEntry"></activity>
-        <activity android:name=".main.AtyEditLogin"></activity>
-        <activity android:name=".main.AtyEditRegister"></activity>
+            android:name=".atys.AtyMain"
+            android:theme="@style/AppTheme.Base.NoActionBar"></activity>
+        <activity android:name=".atys.AtyEditLogin"></activity>
+        <activity android:name=".atys.AtyEditRegister"></activity>
+        <activity
+            android:name=".atys.AtyPublish"
+            android:theme="@style/AppTheme.Base.NoActionBar"></activity>
     </application>
 
 </manifest>

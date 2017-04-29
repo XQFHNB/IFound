@@ -6,22 +6,29 @@
               android:orientation="vertical">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="124dp"
-        android:layout_marginTop="106dp"
-        android:src="@mipmap/logo"/>
+        android:layout_marginTop="106dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/logo"/>
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="150dp"
             android:layout_marginTop="8dp"
             android:text="玩转校园"
             android:textColor="@color/text_color"
@@ -30,7 +37,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="160dp"
             android:layout_marginTop="8dp"
             android:gravity="center"
             android:text="ifound"

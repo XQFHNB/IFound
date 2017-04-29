@@ -1,5 +1,8 @@
 package com.example.anif.beans;
 
+import com.avos.avoscloud.AVFile;
+import com.avos.avoscloud.AVUser;
+
 import java.io.Serializable;
 
 /**
@@ -17,6 +20,35 @@ public class BeanSecondHand implements Serializable {
     private String mGoodDescription;
     private String mGoodPrice;
     private String mImageUrl;
+    private String mContact;
+
+    public String getContact() {
+        return mContact;
+    }
+
+    public void setContact(String contact) {
+        mContact = contact;
+    }
+
+    public MyUser getMyUser() {
+        return mMyUser;
+    }
+
+    public void setMyUser(MyUser myUser) {
+        mMyUser = myUser;
+    }
+
+    private MyUser mMyUser;
+
+    private AVFile mAVFile;
+
+    public AVFile getAVFile() {
+        return mAVFile;
+    }
+
+    public void setAVFile(AVFile AVFile) {
+        mAVFile = AVFile;
+    }
 
     public String getImageUrl() {
         return mImageUrl;
@@ -74,4 +106,8 @@ public class BeanSecondHand implements Serializable {
         mGoodDescription = descriptionShort;
     }
 
+    @Override
+    public String toString() {
+        return getTitle() + "   " + getContact();
+    }
 }

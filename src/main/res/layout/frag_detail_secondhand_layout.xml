@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -58,7 +59,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="16dp"
                 android:text="物品价格描述"
-                android:textAppearance="?android:textAppearanceLarge"
+                android:textSize="18sp"
                 />
 
             <TextView
@@ -67,15 +68,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="16dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@drawable/edit_bg"
                 tools:text="物品价格描述妮嚄妮佛你让你能够给你弄得能否软泥怪浓放那个ionionb嚄你3哦末日扣女童博美容卡"/>
 
             <TextView
                 android:id="@+id/texV_label_frag_detail_secondhand"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/label_common"
+                android:gravity="center"
                 android:textAppearance="?android:textAppearanceLarge"
                 tools:text="体育运动"/>
 
@@ -84,13 +87,22 @@
                 android:layout_height="wrap_content"
                 >
 
-                <ImageView
+                <!--<ImageView-->
+                <!--android:id="@+id/imageV_portrait_frag_detail_secondhand"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--tools:src="@mipmap/ic_launcher"/>-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageV_portrait_frag_detail_secondhand"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
-                    tools:src="@mipmap/ic_launcher"/>
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:border_color="@color/colorPrimary"
+                    app:border_width="2dp"/>
 
                 <TextView
                     android:id="@+id/texV_nickname_frag_detail_secondhand"

@@ -21,4 +21,9 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+
+    <!--我的管理中的背景按钮颜色-->
+    <color name="swipeoption_blue">#3693D0</color>
+    <color name="swipeoption_green">#36CF8E</color>
+    <color name="swipeoption_purple">#ff1744</color>
 </resources>

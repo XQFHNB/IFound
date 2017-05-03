@@ -8,5 +8,7 @@ import com.avos.avoscloud.AVObject;
 public interface ModelSecond {
     void loadData(OnLoadListener listener);
 
+    void loadData(OnLoadListener listener, String label);
+
     void saveData(AVObject avObject, OnSaveListener listener);
 }

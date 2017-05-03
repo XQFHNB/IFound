@@ -79,7 +79,6 @@ public class FragEntry extends FragBase {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.guide_container, FragLoginOrRegister.newInstance()).commit();
-        fragmentTransaction.commit();
     }
 
     /**

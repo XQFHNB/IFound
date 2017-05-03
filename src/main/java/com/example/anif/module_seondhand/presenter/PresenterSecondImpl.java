@@ -53,6 +53,21 @@ public class PresenterSecondImpl implements PresenterSecond {
         });
     }
 
+    @Override
+    public void loadItemList(String label) {
+        mModelSecond.loadData(new OnLoadListener() {
+            @Override
+            public void onSucess(List<BeanSecondHand> mList) {
+                mViewSecond.addItems(mList);
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        }, label);
+    }
+
 
     /**
      * 上传数据

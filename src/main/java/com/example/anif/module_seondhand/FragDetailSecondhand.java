@@ -12,9 +12,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.anif.R;
 import com.example.anif.beans.BeanSecondHand;
 import com.example.anif.utils.Constants;
+import com.example.anif.utils.UtilDate;
+import com.example.anif.utils.UtilLog;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,6 +56,9 @@ public class FragDetailSecondhand extends DialogFragment {
     @BindView(R.id.btn_close_frag_detail_secondhand)
     protected Button mBtnClose;
 
+
+    @BindView(R.id.imageV_detail_frag_detail_secondhand)
+    protected ImageView mImageViewDetail;
 
     /**
      * 传递数据
@@ -104,11 +113,20 @@ public class FragDetailSecondhand extends DialogFragment {
      */
     private void bindView(View view) {
         mTitle.setText(mBeanSecondHand.getTitle());
-        mTime.setText(mBeanSecondHand.getPublishTime());
+
+        Date d = mBeanSecondHand.getPublishTime();
+        String time = UtilDate.getPublishTime(d.toString());
+        mTime.setText(time);
         mDescription.setText(mBeanSecondHand.getGoodDescription());
         String label = mBeanSecondHand.getLabel();
         mLabel.setText(Constants.LABEL_SECONDHAND_MAP_IMAGE_TEXT.get(label));
+
         mImagePortrait.setImageResource(R.mipmap.ic_launcher);
+        String detailImageUrl = mBeanSecondHand.getImageUrl();
+        if (detailImageUrl != null) {
+            mImageViewDetail.setVisibility(View.VISIBLE);
+            Glide.with(getActivity()).load(detailImageUrl).into(mImageViewDetail);
+        }
         mName.setText("熊清锋");
     }
 

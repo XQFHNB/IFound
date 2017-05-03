@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--图片选择器权限-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".App"
@@ -32,6 +34,9 @@
         <activity android:name=".atys.AtyEditRegister"></activity>
         <activity
             android:name=".atys.AtyPublish"
+            android:theme="@style/AppTheme.Base.NoActionBar"></activity>
+        <activity
+            android:name=".atys.AtyMyManagement"
             android:theme="@style/AppTheme.Base.NoActionBar"></activity>
     </application>
 

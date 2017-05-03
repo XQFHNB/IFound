@@ -27,6 +27,7 @@ public class Constants {
 
 
     public static String[] CONTENT_TITLES = {"二手", "拼组", "活动", "特惠"};
+    public static String KEY_TYPE = "type";
 
 
     /**
@@ -85,6 +86,14 @@ public class Constants {
         LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("31", "配件外设");
         LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("32", "美颜护肤");
         LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("33", "运动器材");
+    }
+
+
+    public static HashMap<String, Integer> MAP_TYPE_PROJECT = new HashMap<>();
+
+
+    static {
+        MAP_TYPE_PROJECT.put(Constants.BEAN_KEY_SECONDHAND_TABLE, R.drawable.label_second_books);
     }
 
 

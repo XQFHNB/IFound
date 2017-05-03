@@ -8,5 +8,8 @@ import com.example.anif.module_seondhand.model.OnSaveListener;
 public interface PresenterSecond {
     void loadItemList();
 
+    void loadItemList(String label);
+
     void saveItem(OnSaveListener listener);
+
 }

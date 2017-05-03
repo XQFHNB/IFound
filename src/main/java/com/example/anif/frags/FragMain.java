@@ -17,7 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.anif.R;
+import com.example.anif.atys.AtyMyManagement;
 import com.example.anif.base.FragBase;
+import com.example.anif.module_management.widgets.FragMyManagement;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -62,20 +64,6 @@ public class FragMain extends FragBase {
             R.drawable.label_second_parts,
             R.drawable.label_second_sports,
             R.drawable.label_second_other
-//            R.drawable.bee,
-//            R.drawable.butterfly,
-//            R.drawable.cat,
-//            R.drawable.deer,
-//            R.drawable.dolphin,
-//            R.drawable.eagle,
-//            R.drawable.horse,
-//            R.drawable.jellyfish,
-//            R.drawable.owl,
-//            R.drawable.peacock,
-//            R.drawable.pig,
-//            R.drawable.rat,
-//            R.drawable.snake,
-//            R.drawable.squirrel
     };
 
 
@@ -123,7 +111,6 @@ public class FragMain extends FragBase {
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setupDrawerContent(mNavigationView);
 
-//        mBoomMenuButton = (BoomMenuButton) mToolbar.findViewById(R.id.btn_label_classfy);
         for (int i = 0; i < mBoomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
             TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .listener(new OnBMClickListener() {
@@ -136,20 +123,6 @@ public class FragMain extends FragBase {
                     .normalText(getext());
             mBoomMenuButton.addBuilder(builder);
         }
-
-//        mToolbar.inflateMenu(R.menu.base_toobar_menu);
-//        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-//            @Override
-//            public boolean onMenuItemClick(MenuItem item) {
-//                int menuItemId = item.getItemId();
-//                if (menuItemId == R.id.action_search) {
-//                    Toast.makeText(getActivity(), "dddzzz", Toast.LENGTH_SHORT).show();
-//
-//                }
-//                return true;
-//            }
-//        });
-
     }
 
 
@@ -189,9 +162,35 @@ public class FragMain extends FragBase {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        int itemId = menuItem.getItemId();
+                        switch (itemId) {
+                            case R.id.navigation_item_updateprofie:
+                                switchToUpdateProfile();
+                                break;
+                            case R.id.navigation_item_management:
+                                switchToMyManageMent();
+                                break;
+                            case R.id.navigation_item_about:
+                                switchToAbout();
+                                break;
+                        }
                         mDrawerLayout.closeDrawers();
                         return true;
                     }
                 });
+    }
+
+    private void switchToMyManageMent() {
+//        mFragManager.beginTransaction().replace(R.id.drawer_layout_frag_main, FragMyManagement.newInstance()).commit();
+        AtyMyManagement.start(getActivity(), AtyMyManagement.class);
+    }
+
+
+    private void switchToUpdateProfile() {
+
+    }
+
+    private void switchToAbout() {
+
     }
 }

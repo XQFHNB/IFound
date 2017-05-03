@@ -142,7 +142,29 @@ public class FragSecondhand extends FragBase implements ViewSecond {
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
-                            Toast.makeText(getActivity(), "Clicked " + index, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Clicked " + text[index], Toast.LENGTH_SHORT).show();
+                            String label = new String();
+                            if (index == 0) {
+                                label = "11";
+                            } else if (index == 1) {
+                                label = "12";
+                            } else if (index == 2) {
+                                label = "13";
+                            } else if (index == 3) {
+                                label = "21";
+                            } else if (index == 4) {
+                                label = "22";
+                            } else if (index == 5) {
+                                label = "23";
+                            } else if (index == 6) {
+                                label = "31";
+                            } else if (index == 7) {
+                                label = "32";
+                            } else if (index == 8) {
+                                label = "33";
+                            }
+                            mData.clear();
+                            mPresenterSecond.loadItemList(label);
                         }
                     })
                     .normalImageRes(getImageResource())

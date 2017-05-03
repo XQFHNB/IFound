@@ -2,25 +2,28 @@ package com.example.anif.beans;
 
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVUser;
+import com.example.anif.utils.Constants;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author XQF
  * @created 2017/4/19
  */
-public class BeanSecondHand implements Serializable {
+public class BeanSecondHand implements Serializable, BeanCommon {
 
     /**
      * 发布时间，标签代表字符串，标题，描述,价格，照片信息
      */
-    private String mPublishTime;
+    private Date mPublishTime;
     private String mLabel;
     private String mTitle;
     private String mGoodDescription;
     private String mGoodPrice;
     private String mImageUrl;
     private String mContact;
+
 
     public String getContact() {
         return mContact;
@@ -74,11 +77,11 @@ public class BeanSecondHand implements Serializable {
         mGoodPrice = goodPrice;
     }
 
-    public String getPublishTime() {
+    public Date getPublishTime() {
         return mPublishTime;
     }
 
-    public void setPublishTime(String publishTime) {
+    public void setPublishTime(Date publishTime) {
         mPublishTime = publishTime;
     }
 
@@ -92,6 +95,22 @@ public class BeanSecondHand implements Serializable {
 
     public String getTitle() {
         return mTitle;
+    }
+
+
+    @Override
+    public String getCommonType() {
+        return Constants.BEAN_KEY_SECONDHAND_TABLE;
+    }
+
+    @Override
+    public String getCommonTitle() {
+        return getTitle();
+    }
+
+    @Override
+    public String getCommonDescription() {
+        return getGoodDescription();
     }
 
     public void setTitle(String title) {

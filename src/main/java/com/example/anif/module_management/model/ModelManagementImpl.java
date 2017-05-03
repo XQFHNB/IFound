@@ -1,12 +1,13 @@
-package com.example.anif.module_seondhand.model;
+package com.example.anif.module_management.model;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.avos.avoscloud.SaveCallback;
+import com.example.anif.beans.BeanCommon;
 import com.example.anif.beans.BeanSecondHand;
+import com.example.anif.beans.MyUser;
 import com.example.anif.utils.Constants;
 import com.example.anif.utils.UtilLog;
 
@@ -16,21 +17,19 @@ import java.util.List;
 
 /**
  * @author XQF
- * @created 2017/4/19
+ * @created 2017/5/2
  */
-public class ModelSecondImpl implements ModelSecond {
+public class ModelManagementImpl implements ModelManagement {
 
     @Override
     public void loadData(final OnLoadListener listener) {
-        //查询secondhand表,返回表中的所有AVObject,从中取出所有的BeanSecondHand传出去
         AVQuery<AVObject> avQuery = new AVQuery<>(Constants.BEAN_KEY_SECONDHAND_TABLE);
         avQuery.orderByDescending(Constants.AVOBJECT_KEY_CREATEDAT);
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
-                UtilLog.d("test", "测试一下" + Arrays.toString(list.toArray()));
                 if (e == null) {
-                    ArrayList<BeanSecondHand> mList = new ArrayList<>();
+                    List<BeanCommon> result = new ArrayList<>();
                     for (AVObject av : list) {
                         BeanSecondHand bean = new BeanSecondHand();
                         bean.setTitle((String) av.get(Constants.BEAN_KEY_SECONDHAND_TITLE));
@@ -42,30 +41,35 @@ public class ModelSecondImpl implements ModelSecond {
                         if (avFile != null) {
                             bean.setImageUrl(avFile.getUrl());
                         }
-                        UtilLog.d("test", "测试一下1 " + bean);
-                        mList.add(bean);
+                        result.add(bean);
+                        UtilLog.d("test1", "为什么？" + bean.toString());
                     }
-                    UtilLog.d("test", "测试一下2 " + mList.size());
-
-                    listener.onSucess(mList);
+                    listener.onSucess(result);
                 }
             }
         });
     }
 
-    @Override
-    public void loadData(final OnLoadListener listener, String label) {
-        //查询secondhand表,返回表中的所有AVObject,从中取出所有的BeanSecondHand传出去
+    private List<BeanCommon> queryTableSale() {
+        return null;
+    }
+
+    private List<BeanCommon> queryTableGroup() {
+        return null;
+    }
+
+    private List<BeanCommon> queryTableActivities() {
+        return null;
+    }
+
+    private void queryTableSecondhand() {
+//        final List<BeanCommon> mList = new ArrayList<>();
         AVQuery<AVObject> avQuery = new AVQuery<>(Constants.BEAN_KEY_SECONDHAND_TABLE);
         avQuery.orderByDescending(Constants.AVOBJECT_KEY_CREATEDAT);
-        avQuery.whereContains(Constants.BEAN_KEY_SECONDHAND_LABEL, label);
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
-                UtilLog.d("test", "测试一下" + Arrays.toString(list.toArray()));
-
                 if (e == null) {
-                    ArrayList<BeanSecondHand> mList = new ArrayList<>();
                     for (AVObject av : list) {
                         BeanSecondHand bean = new BeanSecondHand();
                         bean.setTitle((String) av.get(Constants.BEAN_KEY_SECONDHAND_TITLE));
@@ -77,24 +81,16 @@ public class ModelSecondImpl implements ModelSecond {
                         if (avFile != null) {
                             bean.setImageUrl(avFile.getUrl());
                         }
-                        UtilLog.d("test", "测试一下1 " + bean);
-                        mList.add(bean);
+//                        result.add(bean);
+                        UtilLog.d("test1", bean.toString());
                     }
-                    UtilLog.d("test", "测试一下2 " + mList.size());
-
-                    listener.onSucess(mList);
                 }
             }
         });
     }
 
     @Override
-    public void saveData(AVObject avObject, final OnSaveListener listener) {
-        avObject.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(AVException e) {
-                listener.onFail(e);
-            }
-        });
+    public void deleteData(OnDeleteListener listener) {
+
     }
 }

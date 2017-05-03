@@ -294,15 +294,17 @@
                     android:textStyle="bold"/>
 
                 <ImageView
-                    android:id="@+id/imageV_frag_publish_secondhand"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="1"
-                    android:scaleType="centerCrop"
-                    android:src="@android:drawable/screen_background_light_transparent"/>
+                android:id="@+id/imageV_frag_publish_secondhand"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/screen_background_light_transparent"/>
 
             </LinearLayout>
+
+
 
             <TextView
                 android:layout_width="match_parent"

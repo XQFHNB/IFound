@@ -1,9 +1,13 @@
 package com.example.anif.module_seondhand.widgets;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -15,12 +19,15 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
+import com.bumptech.glide.Glide;
 import com.example.anif.R;
 import com.example.anif.base.FragBase;
 import com.example.anif.beans.MyUser;
@@ -29,15 +36,20 @@ import com.example.anif.module_seondhand.presenter.PresenterSecond;
 import com.example.anif.module_seondhand.presenter.PresenterSecondImpl;
 import com.example.anif.module_seondhand.view.ViewPublishSecond;
 import com.example.anif.utils.Constants;
+import com.example.anif.utils.UtilLog;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.crosswall.photo.pick.PickConfig;
+import me.crosswall.photo.pick.util.UriUtil;
 
 /**
  * @author XQF
@@ -136,6 +148,7 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
 
     private PresenterSecond mPresenterSecond;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_publish_secondhand_layout, container, false);
@@ -175,6 +188,7 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
             }
         });
 
+
     }
 
     /**
@@ -211,6 +225,7 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, 1);
+
     }
 
 
@@ -224,6 +239,7 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        UtilLog.d("test", "简单测试一下是不是调用了这个方法");
         if (resultCode == getActivity().RESULT_OK && requestCode == 1) {
             try {
                 mImageView.setImageBitmap(MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData()));
@@ -292,7 +308,6 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
         return true;
     }
 
-
     /**
      * 数据上传
      */
@@ -304,6 +319,7 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
         secondHandObject.put(Constants.BEAN_KEY_SECONDHAND_DESCRIPTION, description);
         secondHandObject.put(Constants.BEAN_KEY_SECONDHAND_CONTACT, contact);
         secondHandObject.put(Constants.BEAN_KEY_SECONDHAND_LABEL, label);
+        secondHandObject.put(Constants.KEY_TYPE, Constants.BEAN_KEY_SECONDHAND_TABLE);
 
         //有图片的话上传图片
         if (mImageViewBytes != null) {
@@ -320,9 +336,9 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
         });
     }
 
-
     @Override
     public AVObject saveData() {
+
         return secondHandObject;
     }
 }

@@ -17,11 +17,11 @@ import butterknife.ButterKnife;
  */
 public class FragActivities extends FragBase {
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_content_common_layout, container, false);
-        ButterKnife.bind(this, view);
-        return view;
-    }
+//    @Nullable
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        View view = inflater.inflate(R.layout.frag_content_common_layout, container, false);
+//        ButterKnife.bind(this, view);
+//        return view;
+//    }
 }

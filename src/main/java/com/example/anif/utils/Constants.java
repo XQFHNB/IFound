@@ -50,7 +50,6 @@ public class Constants {
      * 二手界面涉及的key
      */
     public static String BEAN_KEY_SECONDHAND_TABLE = "secondhand";
-    public static String BEAN_KEY_SECONDHAND_HASHMAP = "secondhandMap";
     public static String BEAN_KEY_SECONDHAND_TITLE = "title";
     public static String BEAN_KEY_SECONDHAND_DESCRIPTION = "description";
     public static String BEAN_KEY_SECONDHAND_LABEL = "label";
@@ -89,8 +88,31 @@ public class Constants {
     }
 
 
-    public static HashMap<String, Integer> MAP_TYPE_PROJECT = new HashMap<>();
+    /**
+     * 拼组界面涉及的key
+     */
+    public static String BEAN_KEY_GROUP_TABLE = "group";
+    public static String BEAN_KEY_GROUP_TITLE = "title";
+    public static String BEAN_KEY_GROUP_DESCRIPTION = "description";
+    public static String BEAN_KEY_GROUP_LABEL = "label";
+    public static String BEAN_KEY_GROUP_CONTACT = "contact";
+    public static String BEAN_KEY_GROUP_OWNER = "owner";
 
+
+    public static HashMap<String, String> LABEL_GROUP_MAP_IMAGE_TEXT = new HashMap<>();
+
+    static {
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("1", "拼车");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("2", "竞赛");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("3", "凑单");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("4", "旅游");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("5", "其他");
+    }
+
+    /**
+     * 管理界面涉及的key
+     */
+    public static HashMap<String, Integer> MAP_TYPE_PROJECT = new HashMap<>();
 
     static {
         MAP_TYPE_PROJECT.put(Constants.BEAN_KEY_SECONDHAND_TABLE, R.drawable.label_second_books);

@@ -17,9 +17,7 @@ import com.example.anif.R;
 import com.example.anif.beans.BeanSecondHand;
 import com.example.anif.utils.Constants;
 import com.example.anif.utils.UtilDate;
-import com.example.anif.utils.UtilLog;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;

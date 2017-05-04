@@ -26,9 +26,11 @@ import com.example.anif.module_seondhand.presenter.PresenterSecondImpl;
 import com.example.anif.module_seondhand.view.ViewSecond;
 import com.example.anif.utils.Constants;
 import com.example.anif.utils.UtilLog;
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,6 +65,7 @@ public class FragSecondhand extends FragBase implements ViewSecond {
             "配件外设", "运动器材", "其他"
 
     };
+
     private static int imageResourceIndex = 0;
 
     static int getImageResource() {
@@ -136,7 +139,11 @@ public class FragSecondhand extends FragBase implements ViewSecond {
         mapLabel.put("31", R.drawable.label_second_parts);
         mapLabel.put("32", R.drawable.label_second_skin);
         mapLabel.put("33", R.drawable.label_second_sports);
+//
 
+        mBoomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_9_1);
+        UtilLog.d("testbmb", "看看9 " + mBoomMenuButton.getPiecePlaceEnum().toString());
+        mBoomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_9_1);
         for (int i = 0; i < mBoomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
             TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .listener(new OnBMClickListener() {

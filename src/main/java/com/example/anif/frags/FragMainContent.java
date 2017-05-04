@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import com.example.anif.R;
 import com.example.anif.module_activities.FragActivities;
 import com.example.anif.base.FragBase;
-import com.example.anif.module_group.FragGroup;
+import com.example.anif.module_group.widgets.FragGroup;
 import com.example.anif.module_sale.FragSale;
 import com.example.anif.module_seondhand.widgets.FragSecondhand;
 import com.example.anif.utils.Constants;

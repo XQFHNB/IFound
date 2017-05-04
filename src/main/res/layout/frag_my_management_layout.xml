@@ -16,13 +16,15 @@
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary">
         </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerV_frag_my_management"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <com.nightonke.boommenu.BoomMenuButton
         android:id="@+id/btn_label_classfy1"

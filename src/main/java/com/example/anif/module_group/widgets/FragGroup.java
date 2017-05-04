@@ -122,14 +122,18 @@ public class FragGroup extends FragBase implements ViewGroups {
         }
 
 
-        mBoomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_9_1);
-        mBoomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_9_1);
+        mBoomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_5_1);
+        mBoomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_5_1);
         for (int i = 0; i < mBoomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
             TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
                             Toast.makeText(getActivity(), "Clicked " + text[index], Toast.LENGTH_SHORT).show();
+                            String label = new String(index + "");
+                            mData.clear();
+                            mPresenterGroup.loadItemlist(label);
+
                         }
                     })
                     .normalImageRes(getImageResource())

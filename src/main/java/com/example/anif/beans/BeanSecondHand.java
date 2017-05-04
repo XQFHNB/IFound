@@ -127,6 +127,6 @@ public class BeanSecondHand implements Serializable, BeanCommon {
 
     @Override
     public String toString() {
-        return getTitle() + "   " + getContact();
+        return getTitle() + "   " + getCommonType();
     }
 }

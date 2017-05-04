@@ -73,5 +73,8 @@ public class BeanGroup implements Serializable, BeanCommon {
         return getDescription();
     }
 
-
+    @Override
+    public String toString() {
+        return getTitle() + "   " + getCommonType();
+    }
 }

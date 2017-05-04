@@ -63,7 +63,6 @@ public class FragSecondhand extends FragBase implements ViewSecond {
             "护肤美颜", "书籍资料", "生活家电",
             "衣物箱包", "优惠卡券", "电子设备",
             "配件外设", "运动器材", "其他"
-
     };
 
     private static int imageResourceIndex = 0;
@@ -98,7 +97,6 @@ public class FragSecondhand extends FragBase implements ViewSecond {
     @BindView(R.id.swipeRefreshLayout_frag_content_common)
     protected SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private Map<String, Integer> mapLabel;
 
     private List<BeanSecondHand> mData = new ArrayList<>();
 
@@ -124,23 +122,6 @@ public class FragSecondhand extends FragBase implements ViewSecond {
         mAdapter = new AdapterSecondhand();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.setAdapter(mAdapter);
-
-
-        /**
-         * 筛选标签
-         */
-        mapLabel = new HashMap<>();
-        mapLabel.put("11", R.drawable.label_second_books);
-        mapLabel.put("12", R.drawable.label_second_clothing);
-        mapLabel.put("13", R.drawable.label_second_discount);
-        mapLabel.put("21", R.drawable.label_second_equbment_electric);
-        mapLabel.put("22", R.drawable.label_second_life_electric);
-        mapLabel.put("23", R.drawable.label_second_other);
-        mapLabel.put("31", R.drawable.label_second_parts);
-        mapLabel.put("32", R.drawable.label_second_skin);
-        mapLabel.put("33", R.drawable.label_second_sports);
-//
-
         mBoomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_9_1);
         UtilLog.d("testbmb", "看看9 " + mBoomMenuButton.getPiecePlaceEnum().toString());
         mBoomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_9_1);
@@ -151,25 +132,7 @@ public class FragSecondhand extends FragBase implements ViewSecond {
                         public void onBoomButtonClick(int index) {
                             Toast.makeText(getActivity(), "Clicked " + text[index], Toast.LENGTH_SHORT).show();
                             String label = new String();
-                            if (index == 0) {
-                                label = "11";
-                            } else if (index == 1) {
-                                label = "12";
-                            } else if (index == 2) {
-                                label = "13";
-                            } else if (index == 3) {
-                                label = "21";
-                            } else if (index == 4) {
-                                label = "22";
-                            } else if (index == 5) {
-                                label = "23";
-                            } else if (index == 6) {
-                                label = "31";
-                            } else if (index == 7) {
-                                label = "32";
-                            } else if (index == 8) {
-                                label = "33";
-                            }
+                            label += index;
                             mData.clear();
                             mPresenterSecond.loadItemList(label);
                         }
@@ -206,12 +169,10 @@ public class FragSecondhand extends FragBase implements ViewSecond {
 
     @Override
     public void addItems(List<BeanSecondHand> mList) {
-        UtilLog.d("test", "测试一下4 " + Arrays.toString(mList.toArray()));
         if (mData == null || mData.size() == 0) {
             mData = mList;
             mAdapter.add(mList);
             mAdapter.notifyDataSetChanged();
-            UtilLog.d("test", "测试一下5 " + Arrays.toString(mList.toArray()));
         }
     }
 
@@ -274,7 +235,7 @@ public class FragSecondhand extends FragBase implements ViewSecond {
             mTextDescriptionShort.setText(description);
 
             String label = bean.getLabel();
-            int labelResId = mapLabel.get(label);
+            int labelResId = Constants.LABEL_SECONDHAND_MAP_IMAGE.get(label);
             mImageView.setImageResource(labelResId);
         }
 

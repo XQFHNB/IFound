@@ -41,7 +41,6 @@ dependencies {
 
     //弹出按钮
     compile 'com.nightonke:boommenu:2.0.9'
-    compile project(':pickphotos')
 
     //个人管理界面的RecyclerView
     compile 'com.nikhilpanju.recyclerviewenhanced:recyclerviewenhanced:1.0.0'

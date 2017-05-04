@@ -41,6 +41,16 @@ public class PresenterGroupImpl implements PresenterGroup {
     }
 
     @Override
+    public void loadItemlist(String label) {
+        mModelGroup.loadData(new OnLoadListener() {
+            @Override
+            public void onSucess(List<BeanGroup> list) {
+                mViewGroups.addItems(list);
+            }
+        }, label);
+    }
+
+    @Override
     public void saveData(OnSaveListener listener) {
         mModelGroup.saveData(mViewPublishGroups.saveData(), listener);
     }

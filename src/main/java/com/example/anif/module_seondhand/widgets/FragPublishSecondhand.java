@@ -267,26 +267,24 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
         //多个标签的使用，现在只是使用一个标签
         ArrayList<String> labelList = new ArrayList<>();
         if (mCheckBox11.isChecked()) {
-            label = "11";
+            label = "0";
         } else if (mCheckBox12.isChecked()) {
-            label = "12";
+            label = "1";
         } else if (mCheckBox13.isChecked()) {
-            label = "13";
+            label = "2";
         } else if (mCheckBox21.isChecked()) {
-            label = "21";
+            label = "3";
         } else if (mCheckBox22.isChecked()) {
-            label = "22";
+            label = "4";
         } else if (mCheckBox23.isChecked()) {
-            label = "23";
+            label = "5";
         } else if (mCheckBox31.isChecked()) {
-            label = "31";
+            label = "6";
         } else if (mCheckBox32.isChecked()) {
-            label = "32";
+            label = "7";
         } else if (mCheckBox33.isChecked()) {
-            label = "33";
+            label = "8";
         }
-
-
         title = mEdtTitle.getText().toString().trim();
         description = mEdtDescription.getText().toString().trim();
         contact = mEdtContact.getText().toString().trim();
@@ -326,7 +324,6 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
 
     @Override
     public AVObject saveData() {
-
         return secondHandObject;
     }
 }

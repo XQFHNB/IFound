@@ -33,38 +33,6 @@ import butterknife.ButterKnife;
  */
 public class FragMain extends FragBase {
 
-    private static int index = 0;
-
-    static String getext() {
-        if (index >= text.length) index = 0;
-        return text[index++];
-
-    }
-
-    private static String[] text = new String[]{
-            "护肤美颜", "书籍资料", "生活家电",
-            "衣物箱包", "优惠卡券", "电子设备",
-            "配件外设", "运动器材", "其他"
-
-    };
-    private static int imageResourceIndex = 0;
-
-    static int getImageResource() {
-        if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
-        return imageResources[imageResourceIndex++];
-    }
-
-    private static int[] imageResources = new int[]{
-            R.drawable.label_second_skin,
-            R.drawable.label_second_books,
-            R.drawable.label_second_life_electric,
-            R.drawable.label_second_clothing,
-            R.drawable.label_second_discount,
-            R.drawable.label_second_equbment_electric,
-            R.drawable.label_second_parts,
-            R.drawable.label_second_sports,
-            R.drawable.label_second_other
-    };
 
 
     // TODO: 2017/4/19 toolbar的监听
@@ -75,9 +43,6 @@ public class FragMain extends FragBase {
 
     @BindView(R.id.navigation_view_frag_main)
     protected NavigationView mNavigationView;
-
-    @BindView(R.id.btn_label_classfy)
-    protected BoomMenuButton mBoomMenuButton;
 
     private ActionBarDrawerToggle mDrawerToggle;
 
@@ -110,19 +75,6 @@ public class FragMain extends FragBase {
         mDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         setupDrawerContent(mNavigationView);
-
-        for (int i = 0; i < mBoomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
-            TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
-                    .listener(new OnBMClickListener() {
-                        @Override
-                        public void onBoomButtonClick(int index) {
-                            Toast.makeText(getActivity(), "Clicked " + index, Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .normalImageRes(getImageResource())
-                    .normalText(getext());
-            mBoomMenuButton.addBuilder(builder);
-        }
     }
 
 
@@ -138,7 +90,6 @@ public class FragMain extends FragBase {
         int id = item.getItemId();
 
         if (id == R.id.action_classfy) {
-//            mBoomMenuButton.performClick();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -181,7 +132,6 @@ public class FragMain extends FragBase {
     }
 
     private void switchToMyManageMent() {
-//        mFragManager.beginTransaction().replace(R.id.drawer_layout_frag_main, FragMyManagement.newInstance()).commit();
         AtyMyManagement.start(getActivity(), AtyMyManagement.class);
     }
 

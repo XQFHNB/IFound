@@ -169,7 +169,7 @@
                         android:id="@+id/cb11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="生活家电"
+                        android:text="护肤美颜"
                         />
 
                     <CheckBox
@@ -177,7 +177,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="护肤美颜"
+                        android:text="书籍资料"
                         />
 
                     <CheckBox
@@ -185,7 +185,7 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="配件外设"
+                        android:text="生活家电"
                         />
                 </TableRow>
 
@@ -196,21 +196,21 @@
 
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="书籍资料"
+                        android:text="衣物箱包"
                         />
 
                     <CheckBox
                         android:id="@+id/cb22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="衣物箱包"
+                        android:text="优惠卡券"
                         />
 
                     <CheckBox
                         android:id="@+id/cb23"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="优惠卡券"
+                        android:text="电子设备"
                         />
                 </TableRow>
 
@@ -220,14 +220,14 @@
                         android:id="@+id/cb32"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="运动器材"
+                        android:text="配件外设"
                         />
 
                     <CheckBox
                         android:id="@+id/cb33"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="电子设备"
+                        android:text="运动器材"
 
                         />
 

@@ -62,29 +62,29 @@ public class Constants {
     public static HashMap<String, Integer> LABEL_SECONDHAND_MAP_IMAGE = new HashMap<>();
 
     static {
-        LABEL_SECONDHAND_MAP_IMAGE.put("11", R.drawable.label_second_books);
-        LABEL_SECONDHAND_MAP_IMAGE.put("12", R.drawable.label_second_clothing);
-        LABEL_SECONDHAND_MAP_IMAGE.put("13", R.drawable.label_second_discount);
-        LABEL_SECONDHAND_MAP_IMAGE.put("21", R.drawable.label_second_equbment_electric);
-        LABEL_SECONDHAND_MAP_IMAGE.put("22", R.drawable.label_second_life_electric);
-        LABEL_SECONDHAND_MAP_IMAGE.put("23", R.drawable.label_second_other);
-        LABEL_SECONDHAND_MAP_IMAGE.put("31", R.drawable.label_second_parts);
-        LABEL_SECONDHAND_MAP_IMAGE.put("32", R.drawable.label_second_skin);
-        LABEL_SECONDHAND_MAP_IMAGE.put("33", R.drawable.label_second_sports);
+        LABEL_SECONDHAND_MAP_IMAGE.put("0", R.drawable.label_second_skin);
+        LABEL_SECONDHAND_MAP_IMAGE.put("1", R.drawable.label_second_books);
+        LABEL_SECONDHAND_MAP_IMAGE.put("2", R.drawable.label_second_life_electric);
+        LABEL_SECONDHAND_MAP_IMAGE.put("3", R.drawable.label_second_clothing);
+        LABEL_SECONDHAND_MAP_IMAGE.put("4", R.drawable.label_second_discount);
+        LABEL_SECONDHAND_MAP_IMAGE.put("5", R.drawable.label_second_equbment_electric);
+        LABEL_SECONDHAND_MAP_IMAGE.put("6", R.drawable.label_second_parts);
+        LABEL_SECONDHAND_MAP_IMAGE.put("7", R.drawable.label_second_sports);
+        LABEL_SECONDHAND_MAP_IMAGE.put("8", R.drawable.label_second_other);
     }
 
     public static HashMap<String, String> LABEL_SECONDHAND_MAP_IMAGE_TEXT = new HashMap<>();
 
     static {
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("11", "书籍资料");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("12", "衣物箱包");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("13", "优惠卡券");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("21", "电子设备");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("22", "生活家电");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("23", "其他");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("31", "配件外设");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("32", "美颜护肤");
-        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("33", "运动器材");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("0", "美颜护肤");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("1", "书籍资料");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("2", "生活家电");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("3", "衣物箱包");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("4", "优惠卡券");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("5", "电子设备");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("6", "运动器材");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("7", "配件外设");
+        LABEL_SECONDHAND_MAP_IMAGE_TEXT.put("8", "其他");
     }
 
 
@@ -102,11 +102,11 @@ public class Constants {
     public static HashMap<String, String> LABEL_GROUP_MAP_IMAGE_TEXT = new HashMap<>();
 
     static {
-        LABEL_GROUP_MAP_IMAGE_TEXT.put("1", "拼车");
-        LABEL_GROUP_MAP_IMAGE_TEXT.put("2", "竞赛");
-        LABEL_GROUP_MAP_IMAGE_TEXT.put("3", "凑单");
-        LABEL_GROUP_MAP_IMAGE_TEXT.put("4", "旅游");
-        LABEL_GROUP_MAP_IMAGE_TEXT.put("5", "其他");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("0", "拼车");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("1", "竞赛");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("2", "凑单");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("3", "旅游");
+        LABEL_GROUP_MAP_IMAGE_TEXT.put("4", "其他");
     }
 
     /**
@@ -115,7 +115,8 @@ public class Constants {
     public static HashMap<String, Integer> MAP_TYPE_PROJECT = new HashMap<>();
 
     static {
-        MAP_TYPE_PROJECT.put(Constants.BEAN_KEY_SECONDHAND_TABLE, R.drawable.label_second_books);
+        MAP_TYPE_PROJECT.put(Constants.BEAN_KEY_SECONDHAND_TABLE, R.drawable.bat);
+        MAP_TYPE_PROJECT.put(Constants.BEAN_KEY_GROUP_TABLE, R.drawable.bear);
     }
 
 

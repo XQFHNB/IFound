@@ -29,9 +29,11 @@ import com.example.anif.module_management.presenter.PresenterManagementImpl;
 import com.example.anif.module_management.view.ViewManagement;
 import com.example.anif.utils.Constants;
 import com.example.anif.utils.UtilLog;
+import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
+import com.nightonke.boommenu.Piece.PiecePlaceEnum;
 import com.nikhilpanju.recyclerviewenhanced.OnActivityTouchListener;
 import com.nikhilpanju.recyclerviewenhanced.RecyclerTouchListener;
 
@@ -62,9 +64,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     }
 
     private static String[] text = new String[]{
-            "护肤美颜", "书籍资料", "生活家电",
-            "衣物箱包", "优惠卡券", "电子设备",
-            "配件外设", "运动器材", "其他"
+            "二手", "拼组"
 
     };
     private static int imageResourceIndex = 0;
@@ -75,15 +75,9 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     }
 
     private static int[] imageResources = new int[]{
-            R.drawable.label_second_skin,
-            R.drawable.label_second_books,
-            R.drawable.label_second_life_electric,
-            R.drawable.label_second_clothing,
-            R.drawable.label_second_discount,
-            R.drawable.label_second_equbment_electric,
-            R.drawable.label_second_parts,
-            R.drawable.label_second_sports,
-            R.drawable.label_second_other
+            R.drawable.bat,
+            R.drawable.bear,
+
     };
 
 
@@ -101,7 +95,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     protected PresenterManagement mPresenterManagement;
     protected MyAdapter mMyAdapter;
 
-    protected List<BeanCommon> mList;
+    protected List<BeanCommon> mList = new ArrayList<>();
 
     private RecyclerTouchListener mOnTouchListener;
     private OnActivityTouchListener touchListener;
@@ -116,10 +110,10 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
         View view = inflater.inflate(R.layout.frag_my_management_layout, container, false);
         ButterKnife.bind(this, view);
         mPresenterManagement = new PresenterManagementImpl(this);
-        mPresenterManagement.loadData();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mMyAdapter = new MyAdapter();
         mRecyclerView.setAdapter(mMyAdapter);
+
         mToolbar.setTitle("我的管理");
         mToolbar.setNavigationIcon(R.drawable.back);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -130,6 +124,9 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
         });
         mOnTouchListener = new RecyclerTouchListener(getActivity(), mRecyclerView);
 
+
+        mBoomMenuButton.setPiecePlaceEnum(PiecePlaceEnum.DOT_2_1);
+        mBoomMenuButton.setButtonPlaceEnum(ButtonPlaceEnum.SC_2_1);
         for (int i = 0; i < mBoomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
             TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .listener(new OnBMClickListener() {
@@ -180,6 +177,8 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     @Override
     public void onResume() {
         super.onResume();
+        mList.clear();
+        mPresenterManagement.loadData();
         mRecyclerView.addOnItemTouchListener(mOnTouchListener);
     }
 
@@ -191,11 +190,14 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
 
     @Override
     public void addItem(List<BeanCommon> list) {
-        if (mList == null) {
+
+        UtilLog.d("testmanage", Arrays.toString(list.toArray()));
+        if (mList.size() == 0 ) {
             mList = list;
             mMyAdapter.add(mList);
             mMyAdapter.notifyDataSetChanged();
         }
+
     }
 
     @Override
@@ -223,7 +225,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
 
         public void bind(BeanCommon bean) {
             String type = bean.getCommonType();
-            String title = bean.getCommonDescription();
+            String title = bean.getCommonTitle();
             String description = bean.getCommonDescription();
             UtilLog.d("test1", "为什么没有执行绑定  " + type + " " + title + " " + description);
             mTextVTitle.setText(title);
@@ -261,8 +263,13 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
 
         public void add(List<BeanCommon> list) {
             UtilLog.d("test1", "那里的list" + Arrays.toString(list.toArray()));
-            myList.clear();
-            myList.addAll(list);
+            if (myList.size() == 0) {
+                myList = list;
+            } else {
+                myList.clear();
+                myList.addAll(list);
+            }
+
         }
     }
 }

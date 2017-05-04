@@ -1,6 +1,7 @@
 package com.example.anif.module_group.presenter;
 
 
+import com.example.anif.module_group.model.OnLoadListener;
 import com.example.anif.module_group.model.OnSaveListener;
 
 /**
@@ -8,6 +9,8 @@ import com.example.anif.module_group.model.OnSaveListener;
  */
 public interface PresenterGroup {
     void loadItemlist();
+
+    void loadItemlist(String label);
 
     void saveData(OnSaveListener listener);
 }

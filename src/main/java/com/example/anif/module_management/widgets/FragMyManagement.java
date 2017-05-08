@@ -1,8 +1,10 @@
 package com.example.anif.module_management.widgets;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
 import com.example.anif.R;
 import com.example.anif.base.FragBase;
 import com.example.anif.beans.BeanCommon;
@@ -24,6 +28,7 @@ import com.example.anif.beans.BeanSecondHand;
 import com.example.anif.beans.MyUser;
 import com.example.anif.module_management.model.ModelManagement;
 import com.example.anif.module_management.model.ModelManagementImpl;
+import com.example.anif.module_management.model.OnDeleteListener;
 import com.example.anif.module_management.presenter.PresenterManagement;
 import com.example.anif.module_management.presenter.PresenterManagementImpl;
 import com.example.anif.module_management.view.ViewManagement;
@@ -96,6 +101,8 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     protected MyAdapter mMyAdapter;
 
     protected List<BeanCommon> mList = new ArrayList<>();
+    protected List<AVObject> mAvList = new ArrayList<>();
+
 
     private RecyclerTouchListener mOnTouchListener;
     private OnActivityTouchListener touchListener;
@@ -160,9 +167,16 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
                     public void onSwipeOptionClicked(int viewID, int position) {
                         String message = "";
                         if (viewID == R.id.add) {
+
+                            // TODO: 2017/5/6 添加修改逻辑
+                            modifyItem();
                             message += "Add";
                         } else if (viewID == R.id.delete) {
+                            // TODO: 2017/5/6 添加删除逻辑
                             message += "delete";
+
+                            AVObject avObject = mAvList.get(position);
+                            deleteItem(avObject);
                         }
                         message += " clicked for row " + (position + 1);
                         toast(message, getActivity());
@@ -171,6 +185,46 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
 
 
         return view;
+    }
+
+
+    /**
+     * 修改该Item对应的object，跳转到publishfrag
+     */
+    private void modifyItem() {
+
+
+    }
+
+    /**
+     * 删除该item对应的逻辑,弹出对话框然后删除
+     */
+    private void deleteItem(final AVObject avObject) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("删除");
+        builder.setMessage("确认删除？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        });
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                mPresenterManagement.deleteItem(avObject, new OnDeleteListener() {
+                    @Override
+                    public void onSucess(AVException e) {
+                        if (e == null) {
+                            toast("删除成功", getActivity());
+                            mMyAdapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+        });
+        builder.create().show();
+
     }
 
 
@@ -189,15 +243,17 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     }
 
     @Override
-    public void addItem(List<BeanCommon> list) {
+    public void addItem(List<BeanCommon> list, List<AVObject> avList) {
 
         UtilLog.d("testmanage", Arrays.toString(list.toArray()));
-        if (mList.size() == 0 ) {
+        if (mList.size() == 0) {
             mList = list;
             mMyAdapter.add(mList);
             mMyAdapter.notifyDataSetChanged();
         }
-
+        if (mAvList.size() == 0) {
+            mAvList = avList;
+        }
     }
 
     @Override
@@ -271,5 +327,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
             }
 
         }
+
+
     }
 }

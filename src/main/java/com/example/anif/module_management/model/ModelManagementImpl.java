@@ -4,6 +4,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.DeleteCallback;
 import com.avos.avoscloud.FindCallback;
 import com.example.anif.beans.BeanCommon;
 import com.example.anif.beans.BeanGroup;
@@ -25,6 +26,7 @@ public class ModelManagementImpl implements ModelManagement {
     @Override
     public void loadData(final OnLoadListener listener) {
         final List<BeanCommon> result = new ArrayList<>();
+        final List<AVObject> resultAvlist = new ArrayList<>();
 
 
         // TODO: 2017/5/4 给所有的查询添加用户条件
@@ -33,6 +35,7 @@ public class ModelManagementImpl implements ModelManagement {
          */
         AVQuery<AVObject> avQuery = new AVQuery<>(Constants.BEAN_KEY_SECONDHAND_TABLE);
         avQuery.orderByDescending(Constants.AVOBJECT_KEY_CREATEDAT);
+        avQuery.include("owner");
         avQuery.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -48,11 +51,15 @@ public class ModelManagementImpl implements ModelManagement {
                         if (avFile != null) {
                             bean.setImageUrl(avFile.getUrl());
                         }
-                        result.add(bean);
+                        String name = av.getAVUser("owner").getUsername();
+                        if (name.equals(MyUser.getCurrentUser().getUsername())) {
+                            result.add(bean);
+                            resultAvlist.add(av);
+                        }
                         UtilLog.d("test1", "为什么？" + bean.toString());
                     }
                     UtilLog.d("testresult", Arrays.toString(result.toArray()));
-                    listener.onSucess(result);
+                    listener.onSucess(result, resultAvlist);
                 }
             }
         });
@@ -74,7 +81,10 @@ public class ModelManagementImpl implements ModelManagement {
                         bean.setLabel((String) av.get(Constants.BEAN_KEY_GROUP_LABEL));
                         bean.setContact((String) av.get(Constants.BEAN_KEY_GROUP_CONTACT));
                         bean.setPublishTime(av.getCreatedAt());
-                        result.add(bean);
+                        String name = av.getAVUser("owner").getUsername();
+                        if (name.equals(MyUser.getCurrentUser().getUsername())) {
+                            result.add(bean);
+                        }
                     }
                     UtilLog.d("testresult", Arrays.toString(result.toArray()));
                 }
@@ -84,7 +94,13 @@ public class ModelManagementImpl implements ModelManagement {
 
 
     @Override
-    public void deleteData(OnDeleteListener listener) {
+    public void deleteData(AVObject avObject, final OnDeleteListener listener) {
+        avObject.deleteInBackground(new DeleteCallback() {
+            @Override
+            public void done(AVException e) {
+                listener.onSucess(e);
+            }
+        });
 
     }
 }

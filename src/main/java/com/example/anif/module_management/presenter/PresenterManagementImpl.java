@@ -1,8 +1,10 @@
 package com.example.anif.module_management.presenter;
 
+import com.avos.avoscloud.AVObject;
 import com.example.anif.beans.BeanCommon;
 import com.example.anif.module_management.model.ModelManagement;
 import com.example.anif.module_management.model.ModelManagementImpl;
+import com.example.anif.module_management.model.OnDeleteListener;
 import com.example.anif.module_management.model.OnLoadListener;
 import com.example.anif.module_management.view.ViewManagement;
 import com.example.anif.utils.UtilLog;
@@ -27,10 +29,14 @@ public class PresenterManagementImpl implements PresenterManagement {
     public void loadData() {
         mModelManagement.loadData(new OnLoadListener() {
             @Override
-            public void onSucess(List<BeanCommon> list) {
-                UtilLog.d("test1", "得到的结果" + Arrays.toString(list.toArray()));
-                mViewManagement.addItem(list);
+            public void onSucess(List<BeanCommon> list, List<AVObject> avlist) {
+                mViewManagement.addItem(list, avlist);
             }
         });
+    }
+
+    @Override
+    public void deleteItem(AVObject avObject, OnDeleteListener listener) {
+        mModelManagement.deleteData(avObject, listener);
     }
 }

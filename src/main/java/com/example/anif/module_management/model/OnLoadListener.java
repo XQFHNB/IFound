@@ -1,5 +1,6 @@
 package com.example.anif.module_management.model;
 
+import com.avos.avoscloud.AVObject;
 import com.example.anif.beans.BeanCommon;
 
 import java.util.List;
@@ -8,5 +9,5 @@ import java.util.List;
  * Created by XQF on 2017/5/2.
  */
 public interface OnLoadListener {
-    void onSucess(List<BeanCommon> list);
+    void onSucess(List<BeanCommon> list, List<AVObject> avlist);
 }

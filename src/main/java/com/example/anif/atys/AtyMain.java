@@ -15,4 +15,14 @@ public class AtyMain extends AtyBase {
     public Fragment createFrag() {
         return new FragMain();
     }
+//    @Override
+//    public void onBackPressed() {
+//        long now = System.currentTimeMillis();
+//        if (now - mCurrentTime < timeInterval) {
+//            super.onBackPressed();
+//        } else {
+//            toast(this, "双击退出");
+//        }
+//        mCurrentTime = now;
+//    }
 }

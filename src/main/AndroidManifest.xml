@@ -38,6 +38,9 @@
         <activity
             android:name=".atys.AtyMyManagement"
             android:theme="@style/AppTheme.Base.NoActionBar"></activity>
+        <activity
+            android:name=".atys.AtyAbout"
+            android:theme="@style/AppTheme.Base.NoActionBar"></activity>
     </application>
 
 </manifest>

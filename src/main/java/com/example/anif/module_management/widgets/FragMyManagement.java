@@ -99,7 +99,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
 
     @BindView(R.id.recyclerV_frag_my_management)
     protected RecyclerView mRecyclerView;
-    @BindView(R.id.toolbar_frag_my_management)
+    @BindView(R.id.toolBar_frag_main)
     protected Toolbar mToolbar;
 
 
@@ -136,7 +136,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                getActivity().finish();
             }
         });
         mOnTouchListener = new RecyclerTouchListener(getActivity(), mRecyclerView);
@@ -188,7 +188,8 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
                             message += "delete";
 
                             AVObject avObject = mAvList.get(position);
-                            deleteItem(avObject);
+                            deleteItem(avObject, position);
+
                         }
                         message += " clicked for row " + (position + 1);
                         toast(message, getActivity());
@@ -242,7 +243,7 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     /**
      * 删除该item对应的逻辑,弹出对话框然后删除
      */
-    private void deleteItem(final AVObject avObject) {
+    private void deleteItem(final AVObject avObject, final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("删除");
         builder.setMessage("确认删除？");
@@ -259,8 +260,9 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
                     @Override
                     public void onSucess(AVException e) {
                         if (e == null) {
-                            toast("删除成功", getActivity());
+                            mList.remove(position);
                             mMyAdapter.notifyDataSetChanged();
+                            toast("删除成功", getActivity());
                         }
                     }
                 });
@@ -370,7 +372,6 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
             }
 
         }
-
 
     }
 }

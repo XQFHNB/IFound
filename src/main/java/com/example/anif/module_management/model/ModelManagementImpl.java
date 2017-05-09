@@ -51,8 +51,9 @@ public class ModelManagementImpl implements ModelManagement {
                         if (avFile != null) {
                             bean.setImageUrl(avFile.getUrl());
                         }
-                        String name = av.getAVUser("owner").getUsername();
-                        if (name.equals(MyUser.getCurrentUser().getUsername())) {
+                        String ID = av.getAVUser("owner").getObjectId();
+                        if (ID.equals(MyUser.getCurrentUser().getObjectId())) {
+                            UtilLog.d("testname", "secondhand: " + ID);
                             result.add(bean);
                             resultAvlist.add(av);
                         }
@@ -81,9 +82,12 @@ public class ModelManagementImpl implements ModelManagement {
                         bean.setLabel((String) av.get(Constants.BEAN_KEY_GROUP_LABEL));
                         bean.setContact((String) av.get(Constants.BEAN_KEY_GROUP_CONTACT));
                         bean.setPublishTime(av.getCreatedAt());
-                        String name = av.getAVUser("owner").getUsername();
-                        if (name.equals(MyUser.getCurrentUser().getUsername())) {
+                        String ID = av.getAVUser("owner").getObjectId();
+
+                        UtilLog.d("testname", "group: " + ID);
+                        if (ID.equals(MyUser.getCurrentUser().getObjectId())) {
                             result.add(bean);
+                            resultAvlist.add(av);
                         }
                     }
                     UtilLog.d("testresult", Arrays.toString(result.toArray()));

@@ -3,11 +3,18 @@ package com.example.anif.base;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.example.anif.R;
+import com.example.anif.utils.UtilLog;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author XQF
@@ -16,6 +23,10 @@ import com.example.anif.R;
 public abstract class AtyBase extends AppCompatActivity {
 
     public abstract Fragment createFrag();
+
+    public long mCurrentTime = 0;
+    public int timeInterval = 1000;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +52,18 @@ public abstract class AtyBase extends AppCompatActivity {
         context.startActivity(intent);
     }
 
+    public void toast(Context context, String str) {
+        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onBackPressed() {
+        long now = System.currentTimeMillis();
+        if (now - mCurrentTime < timeInterval) {
+            System.exit(0);
+        } else {
+            toast(this, "双击退出");
+        }
+        mCurrentTime = now;
+    }
 }

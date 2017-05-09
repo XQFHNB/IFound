@@ -70,6 +70,7 @@ public class FragEntry extends FragBase {
         } else {
             switchToMainActivity();
         }
+//        getActivity().finish();
     }
 
     /**

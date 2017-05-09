@@ -17,8 +17,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.anif.R;
+import com.example.anif.atys.AtyAbout;
 import com.example.anif.atys.AtyMyManagement;
 import com.example.anif.base.FragBase;
+import com.example.anif.beans.MyUser;
 import com.example.anif.module_management.widgets.FragMyManagement;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
@@ -32,7 +34,6 @@ import butterknife.ButterKnife;
  * @created 2017/4/17
  */
 public class FragMain extends FragBase {
-
 
 
     // TODO: 2017/4/19 toolbar的监听
@@ -49,7 +50,7 @@ public class FragMain extends FragBase {
     private AppCompatActivity mAty;
 
     private FragmentManager mFragManager;
-
+    private FragMainContent fragContent;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,7 +100,7 @@ public class FragMain extends FragBase {
      * 显示内容部分
      */
     private void showMainView() {
-        FragMainContent fragContent = new FragMainContent();
+        fragContent = new FragMainContent();
         mFragManager.beginTransaction().add(R.id.frame_content_frag_main, fragContent).commit();
     }
 
@@ -124,6 +125,10 @@ public class FragMain extends FragBase {
                             case R.id.navigation_item_about:
                                 switchToAbout();
                                 break;
+
+                            case R.id.navigation_item_logout:
+                                switchToLogout();
+                                break;
                         }
                         mDrawerLayout.closeDrawers();
                         return true;
@@ -135,12 +140,18 @@ public class FragMain extends FragBase {
         AtyMyManagement.start(getActivity(), AtyMyManagement.class);
     }
 
-
     private void switchToUpdateProfile() {
 
     }
 
-    private void switchToAbout() {
 
+    private void switchToAbout() {
+        AtyAbout.start(getActivity(), AtyAbout.class);
+    }
+
+    private void switchToLogout() {
+        MyUser.logOut();
+        getActivity().finish();
+        mFragManager.beginTransaction().replace(R.id.drawer_layout_frag_main, FragLoginOrRegister.newInstance()).commit();
     }
 }

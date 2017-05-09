@@ -1,7 +1,10 @@
 package com.example.anif.module_management.widgets;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -24,14 +27,17 @@ import com.avos.avoscloud.AVObject;
 import com.example.anif.R;
 import com.example.anif.base.FragBase;
 import com.example.anif.beans.BeanCommon;
+import com.example.anif.beans.BeanGroup;
 import com.example.anif.beans.BeanSecondHand;
 import com.example.anif.beans.MyUser;
+import com.example.anif.module_group.FragDetailGroup;
 import com.example.anif.module_management.model.ModelManagement;
 import com.example.anif.module_management.model.ModelManagementImpl;
 import com.example.anif.module_management.model.OnDeleteListener;
 import com.example.anif.module_management.presenter.PresenterManagement;
 import com.example.anif.module_management.presenter.PresenterManagementImpl;
 import com.example.anif.module_management.view.ViewManagement;
+import com.example.anif.module_seondhand.FragDetailSecondhand;
 import com.example.anif.utils.Constants;
 import com.example.anif.utils.UtilLog;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
@@ -111,6 +117,10 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
     protected BoomMenuButton mBoomMenuButton;
 
 
+    private FragDetailSecondhand mFragDetailSecondhand;
+    private FragDetailGroup mFragDetailGroup;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -153,6 +163,8 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
                     @Override
                     public void onRowClicked(int position) {
                         toast(position + " clicked", getActivity());
+
+                        itemClick(mList.get(position));
                     }
 
                     @Override
@@ -185,6 +197,37 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
 
 
         return view;
+    }
+
+    private void itemClick(BeanCommon beanCommon) {
+        if (beanCommon.getCommonType() == Constants.BEAN_KEY_SECONDHAND_TABLE) {
+            BeanSecondHand beanSecondhand = (BeanSecondHand) beanCommon;
+            mFragDetailSecondhand = FragDetailSecondhand.newInstance(beanSecondhand);
+            mFragDetailSecondhand.setTargetFragment(FragMyManagement.this, Constants.FRAG_PUBLISH_SECONDHAND);
+            mFragDetailSecondhand.show(getFragmentManager(), "dd");
+        } else if (beanCommon.getCommonType() == Constants.BEAN_KEY_GROUP_TABLE) {
+            BeanGroup beanGroup = (BeanGroup) beanCommon;
+            mFragDetailGroup = FragDetailGroup.newInstance(beanGroup);
+            mFragDetailGroup.setTargetFragment(FragMyManagement.this, Constants.FRAG_PUBLISH_GROUP);
+            mFragDetailGroup.show(getFragmentManager(), "dd");
+        }
+
+    }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+        int info = data.getIntExtra("close", -1);
+        if (info == 0) {
+            if (requestCode == Constants.FRAG_PUBLISH_SECONDHAND) {
+                mFragDetailSecondhand.dismiss();
+            } else if (requestCode == Constants.FRAG_PUBLISH_GROUP) {
+                mFragDetailGroup.dismiss();
+            }
+        }
     }
 
 

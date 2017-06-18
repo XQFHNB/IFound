@@ -230,11 +230,10 @@ public class FragSecondhand extends FragBase implements ViewSecond {
             mBeanSecondHand = bean;
             String title = bean.getTitle();
             String description = bean.getGoodDescription();
-
-            mTextTitle.setText(title);
-            mTextDescriptionShort.setText(description);
-
             String label = bean.getLabel();
+            int indexLabel = Integer.parseInt(label);
+            mTextTitle.setText("[" + text[indexLabel] + "] " + title);
+            mTextDescriptionShort.setText(description);
             int labelResId = Constants.LABEL_SECONDHAND_MAP_IMAGE.get(label);
             mImageView.setImageResource(labelResId);
         }

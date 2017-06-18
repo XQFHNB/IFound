@@ -114,7 +114,7 @@ public class FragPublishGroup extends FragBase implements ViewPublishGroups {
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                onBackPressed(true);
             }
         });
         mToolbar.inflateMenu(R.menu.complete_menu);

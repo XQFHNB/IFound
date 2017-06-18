@@ -56,6 +56,9 @@ public abstract class AtyBase extends AppCompatActivity {
         Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
     }
 
+
+
+
     @Override
     public void onBackPressed() {
         long now = System.currentTimeMillis();

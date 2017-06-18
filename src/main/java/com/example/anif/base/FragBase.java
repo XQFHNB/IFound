@@ -34,4 +34,12 @@ public class FragBase extends Fragment {
     public void toast(String str, Context context) {
         Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
     }
+
+    public void onBackPressed(boolean isBack) {
+        if (isBack) {
+            getActivity().finish();
+        } else {
+            getActivity().onBackPressed();
+        }
+    }
 }

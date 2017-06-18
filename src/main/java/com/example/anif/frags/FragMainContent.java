@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.anif.R;
-import com.example.anif.module_activities.FragActivities;
+import com.example.anif.module_activities.widgets.FragActivities;
 import com.example.anif.base.FragBase;
 import com.example.anif.module_group.widgets.FragGroup;
 import com.example.anif.module_sale.FragSale;
@@ -50,6 +50,7 @@ public class FragMainContent extends FragBase {
         mFragmentManager = mAty.getSupportFragmentManager();
         ButterKnife.bind(this, view);
         init();
+
         return view;
     }
 

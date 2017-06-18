@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 
 import com.example.anif.base.AtyBase;
+import com.example.anif.module_activities.widgets.FragPublishActivities;
 import com.example.anif.module_group.widgets.FragPublishGroup;
 import com.example.anif.module_seondhand.widgets.FragPublishSecondhand;
 import com.example.anif.utils.Constants;
@@ -36,6 +37,10 @@ public class AtyPublish extends AtyBase {
             fragmentPublish = new FragPublishSecondhand();
         } else if (mType == Constants.FRAG_PUBLISH_GROUP) {
             fragmentPublish = new FragPublishGroup();
+        } else if (mType == Constants.FRAG_PUBLISH_ACTIVITY) {
+            fragmentPublish = new FragPublishActivities();
+        } else if (mType == Constants.FRAG_PUBLISH_SALE) {
+
         }
         return fragmentPublish;
     }

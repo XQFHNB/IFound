@@ -329,13 +329,22 @@ public class FragMyManagement extends FragBase implements ViewManagement, Recycl
             String title = bean.getCommonTitle();
             String description = bean.getCommonDescription();
             UtilLog.d("test1", "为什么没有执行绑定  " + type + " " + title + " " + description);
-            mTextVTitle.setText(title);
+            String head = bindHead(type);
+            mTextVTitle.setText(head + title);
             mTextVDescription.setText(description);
             int resId = Constants.MAP_TYPE_PROJECT.get(type);
             mImageView.setImageResource(resId);
         }
 
-
+        private String bindHead(String type) {
+            StringBuffer sb = new StringBuffer("[");
+            if (type.equals(Constants.BEAN_KEY_SECONDHAND_TABLE)) {
+                sb.append(text[0]);
+            } else if (type.equals(Constants.BEAN_KEY_GROUP_TABLE)) {
+                sb.append(text[1]);
+            }
+            return sb.append("] ").toString();
+        }
     }
 
     class MyAdapter extends RecyclerView.Adapter<MyHolder> {

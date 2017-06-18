@@ -155,7 +155,7 @@ public class FragPublishSecondhand extends FragBase implements ViewPublishSecond
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().onBackPressed();
+                onBackPressed(true);
             }
         });
 

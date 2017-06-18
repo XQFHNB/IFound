@@ -13,10 +13,10 @@ public class Constants {
 
             {
                     {
-                            "Hotels", "All hotels and hostels are sorted by hospitality rating", "#678FB4"
+                            "写下你的需求！", "", "#678FB4"
                     },
                     {
-                            "Ba0nks", "We carefully verify all banks before add them into the app", "#65B0B4"
+                            "万一发现了尼？", "", "#65B0B4"
                     },
                     {
                             "Stores", "All local stores are categorized for your convenience", "#9B90BC"
@@ -119,5 +119,25 @@ public class Constants {
         MAP_TYPE_PROJECT.put(Constants.BEAN_KEY_GROUP_TABLE, R.drawable.bear);
     }
 
+    /**
+     * 活动界面涉及到的key
+     */
+    public static final String BEAN_KEY_ACTIVITY_TABLE = "activity";
+    public static final String BEAN_KEY_ACTIVITY_TITLE = "title";
+    public static final String BEAN_KEY_ACTIVITY_DESCRIPTION = "description";
+    public static final String BEAN_KEY_ACTIVITY_LABEL = "label";
+    public static final String BEAN_KEY_ACTIVITY_OWNER = "owner";
+    public static final String BEAN_KEY_ACTIVITY_IMAGE = "images";
+
+
+    public static HashMap<String, String> LABEL_ACTIVITY_MAP_IMAGE_TEXT = new HashMap<>();
+
+    static {
+        LABEL_ACTIVITY_MAP_IMAGE_TEXT.put("0", "社团");
+        LABEL_ACTIVITY_MAP_IMAGE_TEXT.put("1", "俱乐部");
+        LABEL_ACTIVITY_MAP_IMAGE_TEXT.put("2", "比赛");
+        LABEL_ACTIVITY_MAP_IMAGE_TEXT.put("3", "院校");
+        LABEL_ACTIVITY_MAP_IMAGE_TEXT.put("4", "其他");
+    }
 
 }

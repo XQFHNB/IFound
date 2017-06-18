@@ -1,7 +1,5 @@
-package com.example.anif.module_group.widgets;
+package com.example.anif.module_activities.widgets;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -19,13 +17,12 @@ import android.widget.Toast;
 import com.example.anif.R;
 import com.example.anif.atys.AtyPublish;
 import com.example.anif.base.FragBase;
-import com.example.anif.beans.BeanGroup;
-import com.example.anif.module_group.FragDetailGroup;
-import com.example.anif.module_group.presenter.PresenterGroup;
-import com.example.anif.module_group.presenter.PresenterGroupImpl;
-import com.example.anif.module_group.view.ViewGroups;
+import com.example.anif.beans.BeanActivities;
+import com.example.anif.module_activities.FragDetailActivity;
+import com.example.anif.module_activities.presenter.IPresenterActivities;
+import com.example.anif.module_activities.presenter.PresenterActivitiesImpl;
+import com.example.anif.module_activities.view.IViewActivities;
 import com.example.anif.utils.Constants;
-import com.example.anif.utils.UtilLog;
 import com.nightonke.boommenu.BoomButtons.ButtonPlaceEnum;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
@@ -45,7 +42,7 @@ import butterknife.OnClick;
  * @author XQF
  * @created 2017/4/19
  */
-public class FragGroup extends FragBase implements ViewGroups {
+public class FragActivities extends FragBase implements IViewActivities {
     /**
      * 标签选择部分
      */
@@ -54,11 +51,10 @@ public class FragGroup extends FragBase implements ViewGroups {
     static String getext() {
         if (index >= text.length) index = 0;
         return text[index++];
-
     }
 
     private static String[] text = new String[]{
-            "拼车", "竞赛", "凑单", "旅游", "其他"
+            "社团", "俱乐部", "比赛", "院校", "其他"
 
     };
 
@@ -77,7 +73,6 @@ public class FragGroup extends FragBase implements ViewGroups {
             R.drawable.label_group_other
     };
 
-
     @BindView(R.id.recyclerView_frag_content_common)
     protected RecyclerView mRecyclerView;
 
@@ -92,11 +87,10 @@ public class FragGroup extends FragBase implements ViewGroups {
     protected SwipeRefreshLayout mSwipeRefreshLayout;
 
     private Map<String, Integer> mapLabel;
-    private List<BeanGroup> mData = new ArrayList<>();
-    private PresenterGroup mPresenterGroup;
-    private FragDetailGroup mFragDetailGroup;
-
-    private AdapterGroup mAdapterGroup;
+    private List<BeanActivities> mData = new ArrayList<>();
+    private IPresenterActivities mIPresenterActivities;
+    private AdapterActivities mAdapterActivities;
+    private FragDetailActivity mFragDetailActivity;
 
 
     @Nullable
@@ -104,12 +98,10 @@ public class FragGroup extends FragBase implements ViewGroups {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_content_common_layout, container, false);
         ButterKnife.bind(this, view);
-
-        mPresenterGroup = new PresenterGroupImpl(this);
+        mIPresenterActivities = new PresenterActivitiesImpl(this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapterGroup = new AdapterGroup();
-        mRecyclerView.setAdapter(mAdapterGroup);
-
+        mAdapterActivities = new AdapterActivities();
+        mRecyclerView.setAdapter(mAdapterActivities);
         init();
         return view;
     }
@@ -132,7 +124,7 @@ public class FragGroup extends FragBase implements ViewGroups {
                             Toast.makeText(getActivity(), "Clicked " + text[index], Toast.LENGTH_SHORT).show();
                             String label = new String(index + "");
                             mData.clear();
-                            mPresenterGroup.loadItemlist(label);
+                            mIPresenterActivities.loadItemlist(label);
 
                         }
                     })
@@ -147,105 +139,98 @@ public class FragGroup extends FragBase implements ViewGroups {
             public void onRefresh() {
                 if (mData != null) {
                     mData.clear();
-                    mPresenterGroup.loadItemlist();
+                    mIPresenterActivities.loadItemlist();
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
             }
         });
     }
 
-    @OnClick(R.id.floatingButton_frag_content_common)
-    public void onFloatingButtonClick() {
-        AtyPublish.start(getActivity(), AtyPublish.class, Constants.FRAG_PUBLISH_GROUP);
-    }
 
 
     @Override
     public void onResume() {
         super.onResume();
         mData.clear();
-        mPresenterGroup.loadItemlist();
+        mIPresenterActivities.loadItemlist();
+    }
+
+
+    @OnClick(R.id.floatingButton_frag_content_common)
+    public void onFloatingButtonClick() {
+        AtyPublish.start(getActivity(), AtyPublish.class, Constants.FRAG_PUBLISH_ACTIVITY);
+
     }
 
     @Override
-    public void addItems(List<BeanGroup> list) {
+    public void addItems(List<BeanActivities> list) {
         if (mData == null || mData.size() == 0) {
             mData = list;
-            mAdapterGroup.addItems(list);
-            mAdapterGroup.notifyDataSetChanged();
+            mAdapterActivities.addItems(list);
+            mAdapterActivities.notifyDataSetChanged();
         }
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode != Activity.RESULT_OK) {
-            return;
-        }
-        if (requestCode == 1) {
-            int info = data.getIntExtra("close", -1);
-            if (info == 0) {
-                mFragDetailGroup.dismiss();
-            }
-        }
-    }
 
-    class HolderGroup extends RecyclerView.ViewHolder {
+    class HolderActivity extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.image_item_frag_group)
+
+        @BindView(R.id.image_item_frag_activity)
         protected ImageView mImageView;
-        @BindView(R.id.title_item_frag_group)
+        @BindView(R.id.title_item_frag_activity)
         protected TextView mTextTitle;
-        @BindView(R.id.description_item_frag_group)
+        @BindView(R.id.description_item_frag_activity)
         protected TextView mTextDescriptionShort;
         @BindView(R.id.cardView)
         protected CardView mCardView;
 
-        private BeanGroup mBeanGroup;
+        protected BeanActivities mBeanActivities;
 
-        public HolderGroup(View itemView) {
+        public HolderActivity(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        public void bind(BeanGroup beanGroup) {
-            mBeanGroup = beanGroup;
-            String label = mBeanGroup.getLabel();
+        public void bind(BeanActivities beanActivities) {
+            mBeanActivities = beanActivities;
+            String title = beanActivities.getTitle();
+            String description = beanActivities.getDescription();
+            String label = beanActivities.getLabel();
             int indexLabel = Integer.parseInt(label);
-            String title = mBeanGroup.getTitle();
-            String description = mBeanGroup.getDescription();
             mTextTitle.setText("[" + text[indexLabel] + "] " + title);
             mTextDescriptionShort.setText(description);
             int labelResId = mapLabel.get(label);
             mImageView.setImageResource(labelResId);
+
         }
 
         @OnClick(R.id.cardView)
         public void onItemCardViewClick() {
-            mFragDetailGroup = FragDetailGroup.newInstance(mBeanGroup);
-            mFragDetailGroup.setTargetFragment(FragGroup.this, 1);
-            mFragDetailGroup.show(getFragmentManager(), "dd");
+            mFragDetailActivity = FragDetailActivity.newInstance(mBeanActivities);
+            mFragDetailActivity.setTargetFragment(FragActivities.this, 1);
+            mFragDetailActivity.show(getFragmentManager(), "dd");
         }
     }
 
-    class AdapterGroup extends RecyclerView.Adapter<HolderGroup> {
+    class AdapterActivities extends RecyclerView.Adapter<HolderActivity> {
 
-        private List<BeanGroup> mList;
+        private List<BeanActivities> mList;
 
-        public AdapterGroup() {
+        public AdapterActivities() {
             mList = new ArrayList<>();
         }
 
         @Override
-        public HolderGroup onCreateViewHolder(ViewGroup container, int viewType) {
+        public HolderActivity onCreateViewHolder(ViewGroup parent, int viewType) {
 
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.item_frag_group_layout, container, false);
-            return new HolderGroup(view);
+            View itemView = LayoutInflater.from(getActivity()).inflate(R.layout.item_frag_activities_layout, parent, false);
+            return new HolderActivity(itemView);
         }
 
         @Override
-        public void onBindViewHolder(HolderGroup holder, int position) {
-            BeanGroup beanGroup = mList.get(position);
-            holder.bind(beanGroup);
+        public void onBindViewHolder(HolderActivity holder, int position) {
+            BeanActivities beanActivities = mList.get(position);
+            holder.bind(beanActivities);
         }
 
         @Override
@@ -253,7 +238,7 @@ public class FragGroup extends FragBase implements ViewGroups {
             return mList.size();
         }
 
-        public void addItems(List<BeanGroup> list) {
+        public void addItems(List<BeanActivities> list) {
             if (mList.size() == 0) {
                 mList = list;
             } else {

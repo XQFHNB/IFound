@@ -14,10 +14,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVFile;
+import com.bumptech.glide.Glide;
 import com.example.anif.R;
 import com.example.anif.atys.AtyAbout;
+import com.example.anif.atys.AtyEditMyProfile;
 import com.example.anif.atys.AtyMyManagement;
 import com.example.anif.base.FragBase;
 import com.example.anif.beans.MyUser;
@@ -28,12 +32,16 @@ import com.nightonke.boommenu.BoomMenuButton;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * @author XQF
  * @created 2017/4/17
  */
 public class FragMain extends FragBase {
+    public static final String KEY_NAME = "name";
+    public static final String KEY_AVATAR = "avatar";
+    public static final String KEY_AVATAR_AVFILE = "avatarfile";
 
 
     // TODO: 2017/4/19 toolbar的监听
@@ -45,6 +53,11 @@ public class FragMain extends FragBase {
     @BindView(R.id.navigation_view_frag_main)
     protected NavigationView mNavigationView;
 
+    protected CircleImageView mCircleImageViewAvatar;
+
+    protected TextView mTextViewName;
+    protected View mHeaderView;
+
     private ActionBarDrawerToggle mDrawerToggle;
 
     private AppCompatActivity mAty;
@@ -52,16 +65,34 @@ public class FragMain extends FragBase {
     private FragmentManager mFragManager;
     private FragMainContent fragContent;
 
+    private MyUser mMyUser;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mTextViewName.setText("" + mMyUser.get(KEY_NAME));
+
+        AVFile avFile = (AVFile) mMyUser.get(KEY_AVATAR);
+        if (avFile != null) {
+            Glide.with(getActivity()).load(avFile.getUrl()).into(mCircleImageViewAvatar);
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_main_layout, container, false);
         ButterKnife.bind(this, view);
+        mHeaderView = mNavigationView.getHeaderView(0);
+        mTextViewName = (TextView) mHeaderView.findViewById(R.id.header_name);
+        mCircleImageViewAvatar = (CircleImageView) mHeaderView.findViewById(R.id.header_avatar);
+        mMyUser = MyUser.getCurrentUser();
         mAty = (AppCompatActivity) getActivity();
         mAty.setSupportActionBar(mToolbar);
         mFragManager = mAty.getSupportFragmentManager();
@@ -72,6 +103,13 @@ public class FragMain extends FragBase {
 
 
     private void init() {
+
+        mTextViewName.setText("" + mMyUser.get(KEY_NAME));
+
+        AVFile avFile = (AVFile) mMyUser.get(KEY_AVATAR);
+        if (avFile != null) {
+            Glide.with(getActivity()).load(avFile.getUrl()).into(mCircleImageViewAvatar);
+        }
         mDrawerToggle = new ActionBarDrawerToggle(getActivity(), mDrawerLayout, mToolbar, R.string.open, R.string.close);
         mDrawerToggle.syncState();
         mDrawerLayout.setDrawerListener(mDrawerToggle);
@@ -141,7 +179,7 @@ public class FragMain extends FragBase {
     }
 
     private void switchToUpdateProfile() {
-
+        AtyEditMyProfile.startAtyEditMyProfile(getActivity(), AtyEditMyProfile.class);
     }
 
 

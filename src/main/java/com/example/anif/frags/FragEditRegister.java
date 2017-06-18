@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVFile;
 import com.avos.avoscloud.SignUpCallback;
 import com.example.anif.R;
 import com.example.anif.atys.AtyMain;
@@ -25,7 +26,9 @@ import butterknife.OnClick;
  * @created 2017/4/17
  */
 public class FragEditRegister extends FragBase {
-
+    public static final String KEY_NAME = "name";
+    public static final String KEY_AVATAR = "avatar";
+    public static final String KEY_AVATAR_AVFILE = "avatarfile";
 
     @BindView(R.id.editText_phone_frag_edit_register)
     protected EditText mEdtPhone;
@@ -89,7 +92,7 @@ public class FragEditRegister extends FragBase {
     /**
      * 转到主活动
      */
-    private void switchToMainActivity(String phone, String name, String pwd) {
+    private void switchToMainActivity(final String phone, String name, String pwd) {
         final ProgressDialog dialog = showSpinnerDialog();
 
         MyUser.signUpByNameAndPwd(phone, name, pwd, new SignUpCallback() {
@@ -97,10 +100,15 @@ public class FragEditRegister extends FragBase {
             public void done(AVException e) {
                 if (e == null) {
                     dialog.dismiss();
+
+                    MyUser myUser = MyUser.getCurrentUser();
+                    myUser.put(KEY_NAME, "m" + phone);
+                    myUser.put(KEY_AVATAR, new AVFile());
+                    myUser.saveInBackground();
                     AtyMain.start(getActivity(), AtyMain.class);
                     getActivity().finish();
                 } else {
-                    UtilLog.d("test", "注册不成功！"+e.getMessage());
+                    UtilLog.d("test", "注册不成功！" + e.getMessage());
                 }
             }
         });

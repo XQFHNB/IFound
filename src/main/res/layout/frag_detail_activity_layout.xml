@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="5dp">
+
+    <!--关闭按钮-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_close_frag_detail_activity"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/close"/>
+    </RelativeLayout>
+
+
+    <!--可滑动的介绍-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:scrollbarSize="2dp"
+        android:scrollbarStyle="insideInset"
+        android:scrollbarThumbVertical="@color/colorPrimary">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/texV_title_frag_detail_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textAppearance="?android:textAppearanceLarge"
+                tools:text="新校区卖篮球"
+                />
+
+            <TextView
+                android:id="@+id/texV_publishTime_frag_detail_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:text="20170331"
+                android:textAppearance="?android:textAppearanceSmall"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:text="物品价格描述"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/texV_description_frag_detail_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_bg"
+                android:padding="5dp"
+                android:textSize="18sp"
+                tools:text="物品价格描述妮嚄妮佛你让你能够给你弄得能否软泥怪浓放那个ionionb嚄你3哦末日扣女童博美容卡"/>
+
+            <TextView
+                android:id="@+id/texV_label_frag_detail_activity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/label_common"
+                android:gravity="center"
+                android:textAppearance="?android:textAppearanceLarge"
+                tools:text="体育运动"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                >
+
+                <!--<ImageView-->
+                <!--android:id="@+id/imageV_portrait_frag_detail_activity"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--tools:src="@mipmap/ic_launcher"/>-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageV_portrait_frag_detail_activity"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:border_color="@color/colorPrimary"
+                    app:border_width="2dp"/>
+
+                <TextView
+                    android:id="@+id/texV_nickname_frag_detail_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@id/imageV_portrait_frag_detail_activity"
+                    tools:text="熊清锋"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/liearLayout_imageDescription_frag_detail_activity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageV_detail_frag_detail_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
